@@ -36,11 +36,15 @@ jobs:
         run: echo Hello, world!
 
       - name: log value 1
-        run: echo value1 {{ github.event.inputs.value1 }}
+        run: echo "value1: ${{ github.event.inputs.value1 }}"
 
       - name: log value 2
-        run: echo value1 {{ github.event.inputs.value2 }}
+        run: echo "value2: ${{ github.event.inputs.value2 }}"
 
+      - name: create summary
+        run: echo "## Values' >> $GITHUB_STEP_SUMMARY
+        run: echo "value1: ${{ github.event.inputs.value1}}, value2: ${{ github.event.inputs.value2 }}"
+        
       - name: sleep 10 seconds
         run: sleep 10
 
