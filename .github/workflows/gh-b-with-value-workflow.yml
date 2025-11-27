@@ -39,11 +39,10 @@ jobs:
       - name: log value 2
         run: echo "value2 ${{ github.event.inputs.value2 }}"
 
-      - name: create summary header
-        run: echo "## Values' >> $GITHUB_STEP_SUMMARY
-      
-      - name: create summary values
-        run: echo "value1 ${{ github.event.inputs.value1 }}, value2 ${{ github.event.inputs.value2 }}"
+      - name: create summary
+        run: |
+          echo "## Values' >> $GITHUB_STEP_SUMMARY
+          echo "value1 ${{ github.event.inputs.value1 }}, value2 ${{ github.event.inputs.value2 }}" >> $GITHUB_STEP_SUMMARY
         
       - name: sleep 10 seconds
         run: sleep 10
