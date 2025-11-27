@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: CI with value
 
 # Controls when the workflow will run
 on:
@@ -14,8 +14,6 @@ on:
         type: string
         description: value2
         
-
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
@@ -36,14 +34,16 @@ jobs:
         run: echo Hello, world!
 
       - name: log value 1
-        run: echo "value1: ${{ github.event.inputs.value1 }}"
+        run: echo "value1 ${{ github.event.inputs.value1 }}"
 
       - name: log value 2
-        run: echo "value2: ${{ github.event.inputs.value2 }}"
+        run: echo "value2 ${{ github.event.inputs.value2 }}"
 
-      - name: create summary
+      - name: create summary header
         run: echo "## Values' >> $GITHUB_STEP_SUMMARY
-        run: echo "value1: ${{ github.event.inputs.value1}}, value2: ${{ github.event.inputs.value2 }}"
+      
+      - name: create summary values
+        run: echo "value1 ${{ github.event.inputs.value1 }}, value2 ${{ github.event.inputs.value2 }}"
         
       - name: sleep 10 seconds
         run: sleep 10
